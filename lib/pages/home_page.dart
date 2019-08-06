@@ -24,12 +24,14 @@ class _HomePageState extends State<HomePage> {
             if (snapshop.hasData) {
               var data = json.decode(snapshop.data.toString());
               List<Map> swiper = (data['data']['slides'] as List).cast();
+              String advertesPicture =  data['data']['advertesPicture']['PICTURE_ADDRESS']; // 广告图片
               List<Map> navigatorList =
                   (data['data']['category'] as List).cast();
               return Column(
                 children: <Widget>[
                   SwiperDiy(swiperDataList: swiper),
                   TopNavigator(navigatorList: navigatorList),
+                  AdBanner(advertesPicture:advertesPicture),
                 ],
               );
             } else {
@@ -110,6 +112,22 @@ class TopNavigator extends StatelessWidget {
           return _girdViewItemUI(context, item);
         }).toList(),
       ),
+    );
+  }
+}
+
+// 广告图片
+class AdBanner extends StatelessWidget {
+  final String advertesPicture;
+
+  AdBanner({Key key, this.advertesPicture}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Image.network(advertesPicture),
+      ],
     );
   }
 }
