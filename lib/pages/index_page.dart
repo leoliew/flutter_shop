@@ -4,6 +4,7 @@ import 'home_page.dart';
 import 'member_page.dart';
 import 'cart_page.dart';
 import 'category_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IndexPage extends StatefulWidget {
   _IndexPageState createState() => _IndexPageState();
@@ -47,6 +48,8 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    // 设计稿的尺寸
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       backgroundColor: Color.fromARGB(244, 245, 245, 1),
       bottomNavigationBar: BottomNavigationBar(
