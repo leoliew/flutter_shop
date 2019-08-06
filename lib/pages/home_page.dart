@@ -3,6 +3,7 @@ import 'package:flutter_shop/service/service_ method.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,14 +25,19 @@ class _HomePageState extends State<HomePage> {
             if (snapshop.hasData) {
               var data = json.decode(snapshop.data.toString());
               List<Map> swiper = (data['data']['slides'] as List).cast();
-              String advertesPicture =  data['data']['advertesPicture']['PICTURE_ADDRESS']; // 广告图片
+              String advertesPicture =
+                  data['data']['advertesPicture']['PICTURE_ADDRESS']; // 广告图片
+              String leaderImage = data['data']['shopInfo']['leaderImage'];
+              String leaderPhone = data['data']['shopInfo']['leaderPhone'];
               List<Map> navigatorList =
                   (data['data']['category'] as List).cast();
               return Column(
                 children: <Widget>[
                   SwiperDiy(swiperDataList: swiper),
                   TopNavigator(navigatorList: navigatorList),
-                  AdBanner(advertesPicture:advertesPicture),
+                  AdBanner(advertesPicture: advertesPicture),
+                  LeaderPhone(
+                      leaderImage: leaderImage, leaderPhone: leaderPhone)
                 ],
               );
             } else {
@@ -52,9 +58,9 @@ class SwiperDiy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('设备宽度:${ScreenUtil.screenWidth}');
-    print('设备高度:${ScreenUtil.screenHeight}');
-    print('设备像素密度:${ScreenUtil.pixelRatio}');
+//    print('设备宽度:${ScreenUtil.screenWidth}');
+//    print('设备高度:${ScreenUtil.screenHeight}');
+//    print('设备像素密度:${ScreenUtil.pixelRatio}');
     return Container(
       height: ScreenUtil().setHeight(333),
 //      width: ScreenUtil().setHeight(750),
@@ -129,5 +135,30 @@ class AdBanner extends StatelessWidget {
         Image.network(advertesPicture),
       ],
     );
+  }
+}
+
+// 店长电话
+class LeaderPhone extends StatelessWidget {
+  final String leaderImage; // 店长图片
+  final String leaderPhone; // 店长电话
+
+  LeaderPhone({Key key, this.leaderImage, this.leaderPhone}) : super();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: _launchURL,
+      child: Image.network(leaderImage),
+    );
+  }
+
+  void _launchURL() async {
+    String url = 'tel:' + leaderPhone;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'url不能进行访问，异常';
+    }
   }
 }
