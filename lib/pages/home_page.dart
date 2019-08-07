@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,10 +17,10 @@ class _HomePageState extends State<HomePage>
   List<Map> hotGoodsList = [];
   String homePageContent = '正在获取数据';
 
+
   @override
   void initState() {
     super.initState();
-    _getHotGoods();
   }
 
   @override
@@ -57,27 +58,50 @@ class _HomePageState extends State<HomePage>
                   (data['data']['floor1'] as List).cast(); // 楼层内容
               List<Map> floor2 = (data['data']['floor2'] as List).cast();
               List<Map> floor3 = (data['data']['floor3'] as List).cast();
-              return SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    SwiperDiy(swiperDataList: swiper),
-                    TopNavigator(navigatorList: navigatorList),
-                    AdBanner(advertesPicture: advertesPicture),
-                    LeaderPhone(
-                      leaderImage: leaderImage,
-                      leaderPhone: leaderPhone,
-                    ),
-                    Recommend(recommendList: recommendList),
-                    FloorTitle(pictureAddress: floor1Title),
-                    FloorContent(floorGoodsList: floor1),
-                    FloorTitle(pictureAddress: floor2Title),
-                    FloorContent(floorGoodsList: floor2),
-                    FloorTitle(pictureAddress: floor3Title),
-                    FloorContent(floorGoodsList: floor3),
-                    _hotGoods(),
-                  ],
+              return EasyRefresh(
+                footer: ClassicalFooter(
+                  bgColor: Colors.white,
+                  textColor: Colors.pink,
+                  infoColor: Colors.pink,
+                  noMoreText:'',
+                  loadedText: '加载完成',
+                  infoText: '更多信息',
+                  loadingText: '上拉加载',
+                  loadReadyText: '上拉加载',
                 ),
-              );
+                  child: ListView(
+                    children: <Widget>[
+                      SwiperDiy(swiperDataList: swiper),
+                      TopNavigator(navigatorList: navigatorList),
+                      AdBanner(advertesPicture: advertesPicture),
+                      LeaderPhone(
+                        leaderImage: leaderImage,
+                        leaderPhone: leaderPhone,
+                      ),
+                      Recommend(recommendList: recommendList),
+                      FloorTitle(pictureAddress: floor1Title),
+                      FloorContent(floorGoodsList: floor1),
+                      FloorTitle(pictureAddress: floor2Title),
+                      FloorContent(floorGoodsList: floor2),
+                      FloorTitle(pictureAddress: floor3Title),
+                      FloorContent(floorGoodsList: floor3),
+                      _hotGoods(),
+                    ],
+                  ),
+                  onLoad: () async {
+                    print('开始加载更多.....');
+                    // 获取热销商品数据
+                    var formData = {'page': page};
+                    await request('homePageBelowContent', formData: formData)
+                        .then((val) {
+                      var data = json.decode(val.toString());
+                      List<Map> newGoodsList = (data['data'] as List).cast();
+                      setState(() {
+                        hotGoodsList.addAll(newGoodsList);
+                        page++;
+                      });
+                    });
+                  });
             } else {
               return Center(
                 child: Text('加载中.....'),
@@ -85,19 +109,6 @@ class _HomePageState extends State<HomePage>
             }
           },
         ));
-  }
-
-  // 获取热销商品数据
-  void _getHotGoods() {
-    var formData = {'page': page};
-    request('homePageBelowContent', formData: formData).then((val) {
-      var data = json.decode(val.toString());
-      List<Map> newGoodsList = (data['data'] as List).cast();
-      setState(() {
-        hotGoodsList.addAll(newGoodsList);
-        page++;
-      });
-    });
   }
 
   Widget hotTitle = Container(
