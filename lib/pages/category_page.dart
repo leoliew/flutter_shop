@@ -71,7 +71,10 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
             bottom: BorderSide(width: 1, color: Colors.black12),
           ),
         ),
-        child: Text(list[index].mallCategoryName),
+        child: Text(
+          list[index].mallCategoryName,
+          style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+        ),
       ),
     );
   }
