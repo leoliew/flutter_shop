@@ -5,10 +5,12 @@ import 'package:flutter_shop/model/category.dart';
 class ChildCategory with ChangeNotifier {
   List<BxMallSubDto> childCategoryList = [];
   int childIndex = 0; // 子类高亮索引
+  String categoryId = '4'; //大类id
 
   // 大类切换逻辑
-  getChildCategory(List<BxMallSubDto> list) {
+  getChildCategory(List<BxMallSubDto> list, String id) {
     childIndex = 0;
+    categoryId = id;
     BxMallSubDto all = BxMallSubDto();
     all.mallSubId = '00';
     all.mallCategoryId = '00';
@@ -19,9 +21,8 @@ class ChildCategory with ChangeNotifier {
     notifyListeners();
   }
 
-  // 改变子类索引
-
-  changeChildIndex(int index){
+  //改变子类索引
+  changeChildIndex(int index) {
     childIndex = index;
     notifyListeners();
   }

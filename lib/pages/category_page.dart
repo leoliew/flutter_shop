@@ -81,7 +81,8 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         });
         var childList = list[index].bxMallSubDto;
         var categoryId = list[index].mallCategoryId;
-        Provide.value<ChildCategory>(context).getChildCategory(childList);
+        Provide.value<ChildCategory>(context)
+            .getChildCategory(childList, categoryId);
         _getGoodsList(categoryId: categoryId);
       },
       child: Container(
@@ -112,7 +113,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       });
 
       Provide.value<ChildCategory>(context)
-          .getChildCategory(list[0].bxMallSubDto);
+          .getChildCategory(list[0].bxMallSubDto, list[0].mallCategoryId);
     });
   }
 
@@ -148,7 +149,7 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
             decoration: BoxDecoration(
               color: Colors.white,
               border:
-                  Border(bottom: BorderSide(width: 1, color: Colors.black12)),
+              Border(bottom: BorderSide(width: 1, color: Colors.black12)),
             ),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -168,13 +169,16 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
 
   Widget _rightInkWell(int index, BxMallSubDto item) {
     bool isClick = false;
-    isClick = (index == Provide.value<ChildCategory>(context).childIndex)
+    isClick = (index == Provide
+        .value<ChildCategory>(context)
+        .childIndex)
         ? true
         : false;
 
     return InkWell(
       onTap: () {
         Provide.value<ChildCategory>(context).changeChildIndex(index);
+        _getGoodsList(item.mallSubId);
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
@@ -187,6 +191,20 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
         ),
       ),
     );
+  }
+
+  void _getGoodsList(String categorySubId) async {
+    var data = {
+    'categoryId': Provide.value<ChildCategory>(context).categoryId,
+    'categorySubId': categorySubId,
+    'page': 1
+    };
+    await request('getMallGoods', formData: data).then((val) {
+    var data = json.decode(val.toString());
+    CategoryGoodsListModel goodList = CategoryGoodsListModel.fromJson(data);
+    Provide.value<CategoryGoodsListProvide>(context)
+        .getGoodsList(goodList.data);
+    });
   }
 }
 
