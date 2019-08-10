@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -65,8 +66,8 @@ class _HomePageState extends State<HomePage>
                   infoColor: Colors.pink,
                   noMoreText:'',
                   loadedText: '加载完成',
-                  infoText: '更多信息',
-                  loadingText: '上拉加载',
+                  infoText: '更新于 ${new DateFormat('Hm').format(new DateTime.now())}',
+                  loadingText: '加载中',
                   loadReadyText: '上拉加载',
                 ),
                   child: ListView(
