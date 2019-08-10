@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_shop/routers/application.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,7 +18,6 @@ class _HomePageState extends State<HomePage>
   int page = 1;
   List<Map> hotGoodsList = [];
   String homePageContent = '正在获取数据';
-
 
   @override
   void initState() {
@@ -60,16 +60,17 @@ class _HomePageState extends State<HomePage>
               List<Map> floor2 = (data['data']['floor2'] as List).cast();
               List<Map> floor3 = (data['data']['floor3'] as List).cast();
               return EasyRefresh(
-                footer: ClassicalFooter(
-                  bgColor: Colors.white,
-                  textColor: Colors.pink,
-                  infoColor: Colors.pink,
-                  noMoreText:'',
-                  loadedText: '加载完成',
-                  infoText: '更新于 ${new DateFormat('Hm').format(new DateTime.now())}',
-                  loadingText: '加载中',
-                  loadReadyText: '上拉加载',
-                ),
+                  footer: ClassicalFooter(
+                    bgColor: Colors.white,
+                    textColor: Colors.pink,
+                    infoColor: Colors.pink,
+                    noMoreText: '',
+                    loadedText: '加载完成',
+                    infoText:
+                        '更新于 ${new DateFormat('Hm').format(new DateTime.now())}',
+                    loadingText: '加载中',
+                    loadReadyText: '上拉加载',
+                  ),
                   child: ListView(
                     children: <Widget>[
                       SwiperDiy(swiperDataList: swiper),
@@ -124,7 +125,10 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            Application.router
+                .navigateTo(context, '/detail?id=${val['goodsId']}');
+          },
           child: Container(
             width: ScreenUtil().setWidth(372),
             color: Colors.white,
