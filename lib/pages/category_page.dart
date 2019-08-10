@@ -214,7 +214,7 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
   }
 }
 
-// 商品列表
+// 类目下商品列表
 class CategoryGoods extends StatefulWidget {
   @override
   _CategoryGoodsState createState() => _CategoryGoodsState();
@@ -234,13 +234,12 @@ class _CategoryGoodsState extends State<CategoryGoods> {
       builder: (context, child, data) {
         try {
           if (Provide.value<ChildCategory>(context).page == 1) {
-            // 列表位置放到最上面
+            //列表位置放到最上面
             scrollController.jumpTo(0.0);
           }
         } catch (e) {
           print('进入页面第一次初始化${e}');
         }
-
         if (data.goodsList.length > 0) {
           return Expanded(
             child: Container(
@@ -291,13 +290,12 @@ class _CategoryGoodsState extends State<CategoryGoods> {
       CategoryGoodsListModel goodList = CategoryGoodsListModel.fromJson(data);
       if (goodList.data == null) {
         Fluttertoast.showToast(
-          msg: '已经到底了',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.pink,
-          textColor: Colors.white,
-          fontSize: 16.0
-        );
+            msg: '已经到底了',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            backgroundColor: Colors.pink,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Provide.value<ChildCategory>(context).changeNoMore('没有更多了');
       } else {
         Provide.value<CategoryGoodsListProvide>(context)

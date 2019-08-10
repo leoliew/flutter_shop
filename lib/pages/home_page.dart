@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   int page = 1;
   List<Map> hotGoodsList = [];
-  String homePageContent = '正在获取数据';
 
   @override
   void initState() {
@@ -36,9 +35,9 @@ class _HomePageState extends State<HomePage>
         ),
         body: FutureBuilder(
           future: request('homePageContext', formData: formData),
-          builder: (context, snapshop) {
-            if (snapshop.hasData) {
-              var data = json.decode(snapshop.data.toString());
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var data = json.decode(snapshot.data.toString());
               List<Map> swiper =
                   (data['data']['slides'] as List).cast(); // 顶部轮播组件数
               List<Map> navigatorList =

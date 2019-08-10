@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/details_info.dart';
 import 'package:flutter_shop/pages/details_page/details_top_area.dart';
+import 'package:flutter_shop/pages/details_page/details_explain.dart';
 
 class DetailPage extends StatelessWidget {
   final String goodsId;
@@ -10,7 +11,6 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getBackInfo(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,6 +28,7 @@ class DetailPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     DetailsTopArea(),
+                    DetailsExplain(),
                   ],
                 ),
               );
