@@ -30,6 +30,7 @@ dependencies:
   flutter_easyrefresh: ^2.0.1
   provide: ^1.0.2
   intl: ^0.15.8
+  fluttertoast: ^3.1.0
 
 dev_dependencies:
   flutter_test:
