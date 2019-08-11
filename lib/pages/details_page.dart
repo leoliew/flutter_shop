@@ -4,6 +4,7 @@ import 'package:flutter_shop/provide/details_info.dart';
 import 'package:flutter_shop/pages/details_page/details_top_area.dart';
 import 'package:flutter_shop/pages/details_page/details_explain.dart';
 import 'package:flutter_shop/pages/details_page/details_tab_bar.dart';
+import 'package:flutter_shop/pages/details_page/details_web.dart';
 
 class DetailPage extends StatelessWidget {
   final String goodsId;
@@ -31,6 +32,7 @@ class DetailPage extends StatelessWidget {
                     DetailsTopArea(),
                     DetailsExplain(),
                     DetailsTabBar(),
+                    DetailWeb(),
                   ],
                 ),
               );
