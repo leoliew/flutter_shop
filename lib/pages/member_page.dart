@@ -13,11 +13,13 @@ class MemberPage extends StatelessWidget {
           _topHeader(),
           _orderTitle(),
           _orderType(),
+          _actionList(),
         ],
       ),
     );
   }
 
+  // 个人头像区域
   Widget _topHeader() {
     return Container(
       width: ScreenUtil().setWidth(750),
@@ -47,6 +49,7 @@ class MemberPage extends StatelessWidget {
     );
   }
 
+  // 订单标题
   Widget _orderTitle(){
     return Container(
       margin: EdgeInsets.only(top: 10),
@@ -68,6 +71,7 @@ class MemberPage extends StatelessWidget {
     );
   }
 
+  // 订单管理
   Widget _orderType(){
 
     return Container(
@@ -128,6 +132,41 @@ class MemberPage extends StatelessWidget {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  // 通用ListTile
+  Widget _myListTile(String title){
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border:Border(
+          bottom:BorderSide(
+            width: 1,
+            color: Colors.black12,
+          ),
+        ),
+      ),
+      child: ListTile(
+        leading: Icon(Icons.blur_circular),
+        title: Text(title),
+        trailing: Icon(Icons.arrow_right),
+      ),
+    );
+  }
+
+  Widget _actionList(){
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      child: Column(
+        children: <Widget>[
+          _myListTile('领取优惠券'),
+          _myListTile('已领取优惠券'),
+          _myListTile('地址管理'),
+          _myListTile('客服电话'),
+          _myListTile('关于我们'),
         ],
       ),
     );
