@@ -45,6 +45,7 @@ class CartProvide with ChangeNotifier {
     notifyListeners();
   }
 
+  // TODO: remove 方法目前是有问题，没有能改变价格以及数量
   remove() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('cartInfo');
