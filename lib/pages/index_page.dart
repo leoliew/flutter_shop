@@ -5,12 +5,10 @@ import 'member_page.dart';
 import 'cart_page.dart';
 import 'category_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
+import 'package:flutter_shop/provide/current_index.dart';
 
-class IndexPage extends StatefulWidget {
-  _IndexPageState createState() => _IndexPageState();
-}
-
-class _IndexPageState extends State<IndexPage> {
+class IndexPage extends StatelessWidget {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.home),
@@ -37,37 +35,30 @@ class _IndexPageState extends State<IndexPage> {
     MemberPage(),
   ];
 
-  int currentIndex = 0;
-  var currentPage;
-
-  @override
-  void initState() {
-    currentPage = tabBodies[currentIndex];
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    // 设计稿的尺寸
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    return Scaffold(
-      backgroundColor: Color.fromARGB(244, 245, 245, 1),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        items: bottomTabs,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-            currentPage = tabBodies[currentIndex];
-          });
-        },
-      ),
-      // 只有两个前置组件才能保持页面状态：PageView和IndexedStack
-      body: IndexedStack(
-        index: currentIndex,
-        children: tabBodies,
-      ),
+    return Provide<CurrentIndexProvide>(
+      builder: (context, child, val) {
+        int currentIndex =
+            Provide.value<CurrentIndexProvide>(context).currentIndex;
+        return Scaffold(
+          backgroundColor: Color.fromARGB(244, 245, 245, 1),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            items: bottomTabs,
+            onTap: (index) {
+              Provide.value<CurrentIndexProvide>(context).changeIndex(index);
+            },
+          ),
+          // 只有两个前置组件才能保持页面状态：PageView和IndexedStack
+          body: IndexedStack(
+            index: currentIndex,
+            children: tabBodies,
+          ),
+        );
+      },
     );
   }
 }
