@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/model/category_goods_list.dart';
 
-//ChangeNotifier的混入是不用管理听众
+// ChangeNotifier的混入是不用管理听众
 class CategoryGoodsListProvide with ChangeNotifier {
   List<CategoryListData> goodsList = [];
 

@@ -105,6 +105,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     );
   }
 
+  // 类目列表
   void _getCategory() async {
     await request('getCategory').then((val) {
       var data = json.decode(val.toString());
@@ -120,6 +121,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     });
   }
 
+  // 类目商品
   void _getGoodsList({String categoryId}) async {
     var data = {
       'categoryId': categoryId == null ? '4' : categoryId,
@@ -135,7 +137,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   }
 }
 
-//右侧小类类别
+// 右侧小类类别
 class RightCategoryNav extends StatefulWidget {
   _RightCategoryNavState createState() => _RightCategoryNavState();
 }
@@ -238,7 +240,7 @@ class _CategoryGoodsState extends State<CategoryGoods> {
             scrollController.jumpTo(0.0);
           }
         } catch (e) {
-          print('进入页面第一次初始化${e}');
+          print('进入页面第一次初始化$e');
         }
         if (data.goodsList.length > 0) {
           return Expanded(

@@ -36,10 +36,10 @@ class Data {
 
   Data(
       {this.mallCategoryId,
-        this.mallCategoryName,
-        this.bxMallSubDto,
-        this.comments,
-        this.image});
+      this.mallCategoryName,
+      this.bxMallSubDto,
+      this.comments,
+      this.image});
 
   Data.fromJson(Map<String, dynamic> json) {
     mallCategoryId = json['mallCategoryId'];

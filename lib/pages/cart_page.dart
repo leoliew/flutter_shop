@@ -16,7 +16,6 @@ class CartPage extends StatelessWidget {
         builder: (context, snapshot) {
           List cartList = Provide.value<CartProvide>(context).cartList;
           if (snapshot.hasData) {
-            print(cartList);
             return Stack(
               children: <Widget>[
                 Provide<CartProvide>(

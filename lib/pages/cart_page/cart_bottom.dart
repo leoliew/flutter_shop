@@ -13,9 +13,9 @@ class CartBottom extends StatelessWidget {
         builder: (context, child, val) {
           return Row(
             children: <Widget>[
-              selectAllBtn(context),
-              allPriceArea(context),
-              goButton(context),
+              _selectAllBtn(context),
+              _allPriceArea(context),
+              _goButton(context),
             ],
           );
         },
@@ -23,7 +23,8 @@ class CartBottom extends StatelessWidget {
     );
   }
 
-  Widget selectAllBtn(context) {
+  // 全选按钮
+  Widget _selectAllBtn(context) {
     bool isAllCheck = Provide.value<CartProvide>(context).isAllCheck;
     return Container(
       child: Row(
@@ -41,9 +42,9 @@ class CartBottom extends StatelessWidget {
     );
   }
 
-  Widget allPriceArea(context) {
+  // 价格汇总区域
+  Widget _allPriceArea(context) {
     double allPrice = Provide.value<CartProvide>(context).allPrice;
-
     return Container(
       width: ScreenUtil().setWidth(430),
       child: Column(
@@ -64,7 +65,7 @@ class CartBottom extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 width: ScreenUtil().setWidth(150),
                 child: Text(
-                  '￥${allPrice}',
+                  '￥$allPrice',
                   style: TextStyle(
                     fontSize: ScreenUtil().setSp(36),
                     color: Colors.red,
@@ -89,9 +90,9 @@ class CartBottom extends StatelessWidget {
     );
   }
 
-  Widget goButton(context) {
+  // 结算
+  Widget _goButton(context) {
     int allGoodsCount = Provide.value<CartProvide>(context).allGoodsCount;
-
     return Container(
       width: ScreenUtil().setWidth(160),
       padding: EdgeInsets.only(left: 10),

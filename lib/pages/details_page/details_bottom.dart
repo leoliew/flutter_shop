@@ -53,7 +53,7 @@ class DetailsBottom extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: Text(
-                        '${goodsCount}',
+                        '$goodsCount',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: ScreenUtil().setSp(22),
@@ -86,7 +86,7 @@ class DetailsBottom extends StatelessWidget {
           ),
           InkWell(
             onTap: () async {
-              await Provide.value<CartProvide>(context).remove();
+//              await Provide.value<CartProvide>(context).remove();
             },
             child: Container(
               alignment: Alignment.center,

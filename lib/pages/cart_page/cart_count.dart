@@ -4,9 +4,9 @@ import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/cart.dart';
 
 class CartCount extends StatelessWidget {
-  var item;
-  CartCount(this.item);
+  final item;
 
+  CartCount(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,7 @@ class CartCount extends StatelessWidget {
       width: ScreenUtil().setWidth(165),
       margin: EdgeInsets.only(top: 5.0),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: Colors.black12
-        ),
+        border: Border.all(width: 1, color: Colors.black12),
       ),
       child: Row(
         children: <Widget>[
@@ -30,9 +27,9 @@ class CartCount extends StatelessWidget {
   }
 
   // 减少按钮
-  Widget _reduceBtn(context){
+  Widget _reduceBtn(context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Provide.value<CartProvide>(context).addAndReduceAction(item, 'reduce');
       },
       child: Container(
@@ -40,23 +37,22 @@ class CartCount extends StatelessWidget {
         height: ScreenUtil().setHeight(45),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: item.count>1? Colors.white: Colors.black12,
-          border: Border(
-            right: BorderSide(
-              width: 1,
-              color: Colors.black12,
-            ),
-          )
-        ),
-        child: item.count>1? Text('-'):Text(' ') ,
+            color: item.count > 1 ? Colors.white : Colors.black12,
+            border: Border(
+              right: BorderSide(
+                width: 1,
+                color: Colors.black12,
+              ),
+            )),
+        child: item.count > 1 ? Text('-') : Text(' '),
       ),
     );
   }
 
   // 加号按钮
-  Widget _addBtn(context){
+  Widget _addBtn(context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Provide.value<CartProvide>(context).addAndReduceAction(item, 'add');
       },
       child: Container(
@@ -70,22 +66,20 @@ class CartCount extends StatelessWidget {
                 width: 1,
                 color: Colors.black12,
               ),
-            )
-        ),
+            )),
         child: Text('+'),
       ),
     );
   }
 
   // 中间显示区域
-  Widget _countArea(){
+  Widget _countArea() {
     return Container(
       width: ScreenUtil().setWidth(70),
       height: ScreenUtil().setHeight(45),
       alignment: Alignment.center,
       color: Colors.white,
       child: Text('${item.count}'),
-
     );
   }
 }

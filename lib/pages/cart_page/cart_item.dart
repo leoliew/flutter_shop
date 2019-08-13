@@ -12,7 +12,6 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    print(item);
     return Container(
       margin: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0),
       padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
@@ -29,26 +28,22 @@ class CartItem extends StatelessWidget {
           _cartCheckBt(context, item),
           _cartImage(),
           _cartGoodsName(),
-          _cartPrice(context,item),
+          _cartPrice(context, item),
         ],
       ),
     );
   }
 
 //多选按钮
-  Widget _cartCheckBt(context,item){
+  Widget _cartCheckBt(context, item) {
     return Container(
       child: Checkbox(
         value: item.isCheck,
-        activeColor:Colors.pink,
-        //-------新增代码--------start---------
-        onChanged: (bool val){
-          print('点击了${item}');
-          print('点击了${val}');
-          item.isCheck=val;
+        activeColor: Colors.pink,
+        onChanged: (bool val) {
+          item.isCheck = val;
           Provide.value<CartProvide>(context).changeCheckState(item);
         },
-        //-------新增代码--------end---------
       ),
     );
   }
@@ -84,7 +79,7 @@ class CartItem extends StatelessWidget {
   }
 
   // 商品价格
-  Widget _cartPrice(context,item) {
+  Widget _cartPrice(context, item) {
     return Container(
       width: ScreenUtil().setWidth(150),
       alignment: Alignment.centerRight,
@@ -94,7 +89,8 @@ class CartItem extends StatelessWidget {
           Container(
             child: InkWell(
               onTap: () {
-                Provide.value<CartProvide>(context).deleteOneGoods(item.goodsId);
+                Provide.value<CartProvide>(context)
+                    .deleteOneGoods(item.goodsId);
               },
               child: Icon(
                 Icons.delete_forever,

@@ -90,7 +90,6 @@ class _HomePageState extends State<HomePage>
                     ],
                   ),
                   onLoad: () async {
-                    print('开始加载更多.....');
                     // 获取热销商品数据
                     var formData = {'page': page};
                     await request('homePageBelowContent', formData: formData)

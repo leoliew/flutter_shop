@@ -36,10 +36,10 @@ class CategoryListData {
 
   CategoryListData(
       {this.image,
-        this.oriPrice,
-        this.presentPrice,
-        this.goodsName,
-        this.goodsId});
+      this.oriPrice,
+      this.presentPrice,
+      this.goodsName,
+      this.goodsId});
 
   CategoryListData.fromJson(Map<String, dynamic> json) {
     image = json['image'];

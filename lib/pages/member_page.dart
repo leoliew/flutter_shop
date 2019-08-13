@@ -50,35 +50,32 @@ class MemberPage extends StatelessWidget {
   }
 
   // 订单标题
-  Widget _orderTitle(){
+  Widget _orderTitle() {
     return Container(
       margin: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            width: 1,
-            color: Colors.black12,
-          ),
-        )
-      ),
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(
+              width: 1,
+              color: Colors.black12,
+            ),
+          )),
       child: ListTile(
         leading: Icon(Icons.list),
         title: Text('我的订单'),
         trailing: Icon(Icons.arrow_right),
       ),
-
     );
   }
 
   // 订单管理
-  Widget _orderType(){
-
+  Widget _orderType() {
     return Container(
-      margin: EdgeInsets.only(top:5),
+      margin: EdgeInsets.only(top: 5),
       width: ScreenUtil().setWidth(750),
       height: ScreenUtil().setHeight(150),
-      padding: EdgeInsets.only(top:20),
+      padding: EdgeInsets.only(top: 20),
       color: Colors.white,
       child: Row(
         children: <Widget>[
@@ -138,12 +135,12 @@ class MemberPage extends StatelessWidget {
   }
 
   // 通用ListTile
-  Widget _myListTile(String title){
+  Widget _myListTile(String title) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        border:Border(
-          bottom:BorderSide(
+        border: Border(
+          bottom: BorderSide(
             width: 1,
             color: Colors.black12,
           ),
@@ -157,7 +154,7 @@ class MemberPage extends StatelessWidget {
     );
   }
 
-  Widget _actionList(){
+  Widget _actionList() {
     return Container(
       margin: EdgeInsets.only(top: 10),
       child: Column(
@@ -171,5 +168,4 @@ class MemberPage extends StatelessWidget {
       ),
     );
   }
-
 }

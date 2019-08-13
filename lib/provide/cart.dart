@@ -10,6 +10,7 @@ class CartProvide with ChangeNotifier {
   int allGoodsCount = 0; // 总商品数量
   bool isAllCheck = true; // 是否全选
 
+  // 添加商品
   save(goodsId, goodsName, count, price, images) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString('cartInfo');
@@ -59,6 +60,7 @@ class CartProvide with ChangeNotifier {
     notifyListeners();
   }
 
+  // 获取购物车商品
   getCartInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     cartString = prefs.getString('cartInfo');
