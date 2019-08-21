@@ -12,7 +12,7 @@ A few resources to get you started if this is your first Flutter project:
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 ## 项目功能
-![项目功能](https://github.com/leoliew/flutter_shop/tree/master/document/feature.png)
+![项目功能](https://raw.githubusercontent.com/leoliew/flutter_shop/master/document/feature.png?token=AA2DVRRMSGL3CNLIGBMES6C5M2VIG)
 
 ## 项目结构
 
