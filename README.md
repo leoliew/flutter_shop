@@ -29,7 +29,7 @@ lib
 ```
 
 ## API 文档
-![文档地址](https://documenter.getpostman.com/view/363009/SVfKwVR7?version=latest)
+[文档地址](https://documenter.getpostman.com/view/363009/SVfKwVR7?version=latest)
 
 ## 依赖模块
 - dio                       // http请求
