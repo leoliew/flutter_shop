@@ -32,15 +32,15 @@ lib
 [文档地址](https://documenter.getpostman.com/view/363009/SVfKwVR7?version=latest)
 
 ## 依赖模块
-- dio                       // http请求
-- flutter_swiper            // 轮播展示
-- flutter_screenutil        // 屏幕适配
-- url_launcher              // 唤起url
-- flutter_easyrefresh       // 上/下拉加载
-- provide                   // 状态管理
-- intl                      // 国际化
-- fluttertoast              // 轻提示
-- fluro                     // 企业级路由
-- flutter_html              // html解析
-- shared_preferences        // 数据持久化
+- [dio] - http请求
+- [flutter_swiper] -轮播展示
+- [flutter_screenutil] - 屏幕适配
+- [url_launcher] - 唤起url
+- [flutter_easyrefresh] - 上/下拉加载
+- [provide] - 状态管理
+- [intl] - 国际化
+- [fluttertoast] - 轻提示
+- [fluro] - 企业级路由
+- [flutter_html] - html解析
+- [shared_preferences] - 数据持久化
 
